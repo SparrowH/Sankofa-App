@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "sankofa-app",
+    "slug": "sankofa-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/LogoIcon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/screenSplash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFF7CC",
+      "padding": 40
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/LogoIcon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
