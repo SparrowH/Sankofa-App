@@ -10,7 +10,7 @@ import { StatusBar } from 'react-native';
 const RootLayout = () => {
 
     const [fontsLoaded, fontError] = useFonts({
-        'PoppinsRegular': require('../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins': require('../assets/fonts/Poppins-Regular.ttf'),
         'PoppinsBold': require('../assets/fonts/Poppins-Bold.ttf'),
         'HammerSmith': require('../assets/fonts/HammersmithOne-Regular.ttf')
 
@@ -36,6 +36,7 @@ const RootLayout = () => {
             backgroundColor: colors.background
         },
         statusBarColor: colors.primary,
+        headerBackVisible: false
     
     }}  ></Stack>
   )
