@@ -1,7 +1,9 @@
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native'
+import { View, Text, Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import colors from '../assets/colors/colors'
 import { Link } from 'expo-router'
+import Profile from '../components/Profile'
+
 
 const login = () => {
   const plus = require('../assets/images/Vector.png')
@@ -9,12 +11,12 @@ const login = () => {
     <View style={styles.loginContainer}>
       <Text style={styles.loginHeading}>Choose a Profile</Text>
       <View style={styles.loginProfileContainer}>
-        <Text style={styles.profileInfo}>No profiles yet</Text>
+        <Profile/> 
       </View>
 
       <View style={styles.buttonContainer}>
-        <Link push href='newProfile' asChild>
-          <Pressable><Image source={plus} resizeMode='contain'/></Pressable>
+        <Link replace href='newProfile' asChild>
+          <TouchableOpacity><Image source={plus} resizeMode='contain'/></TouchableOpacity>
         </Link>
         </View>
         <Text style={styles.buttonInfo}>Add new profile</Text>
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
   },
 
   loginProfileContainer: {
-    marginBottom: 50
+    marginBottom: 150
   },
 
   profileInfo: {
@@ -54,8 +56,8 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    width: 94,
-    height: 94,
+    width: 90,
+    height: 90,
     borderRadius: 16,
     backgroundColor: colors.primary,
     alignItems: 'center',
@@ -69,5 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 30,
     color: colors.primary
-  }
+  },
+
 })

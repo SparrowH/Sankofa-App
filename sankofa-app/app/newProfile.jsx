@@ -1,27 +1,47 @@
-import { View, Text, StyleSheet, Pressable, Image, TextInput } from 'react-native'
+import { View, Text, StyleSheet, Pressable, Image, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import colors from '../assets/colors/colors'
+import AvatarOvalay from '../components/AvatarOverlay'
+import AvatarList from '../components/AvatarList'
+import AvatarImage from '../components/AvatarImage'
+import {Link} from 'expo-router'
+import login from './login'
+import Profile from '../components/Profile'
 
 const newProfile = () => {
     const unknown = require('../assets/images/unknown.png')
     const pencil = require('../assets/images/mdi_pencil.png')
-    const account_unknown = require('../assets/images/mdi_account-circle.png')
-    const [showAvatars, setShowAvatars] = useState(false)
+    const [visible, setVisible] = useState(false)
+    const [pickerAvatar, setPickerAvatar] = useState(null)
+    const [username, setUsername] = useState('')
+    const [isPressed, setIsPressed] = useState(false)
 
+
+    const toggleOverlay = () => {
+      setVisible(!visible);
+    };
+
+    const  saveProfileHandler = () => {
+      setIsPressed(!isPressed)
+      return(
+        <Profile selectedAvatar={pickerAvatar} username={username}/>
+      )
+    }
 
   return (
-
-    
+ 
     <View style={styles.newProfileContainer} >
       <Text style={styles.newProfileHeading}>Create a new Profile</Text>
 
       <View style={styles.profileContainer}>
         <View style={styles.unknown_profile_Container}>
-            <Image style={styles.unknown_profile} source={unknown} resizeMode='contain'/>
+           {pickerAvatar ? <AvatarImage profileSource={pickerAvatar}/> : <Image style={styles.unknown_profile} source={unknown} resizeMode='contain'/>} 
         </View>
 
         <View style={styles.buttonContainer}>
-          <Pressable><Image source={pencil} /></Pressable>
+          <Pressable onPress={toggleOverlay}>
+            <Image source={pencil} style={styles.pencil}  resizeMode='contain'/>
+          </Pressable>
 
         </View>
       </View>
@@ -30,7 +50,10 @@ const newProfile = () => {
         <Text style={styles.userInput_Text} >Username</Text>
         <TextInput
          style={styles.userInputBox}
-         placeholder={` Enter preferred username`}/>
+         placeholder={` Enter preferred username`}
+         value={username}
+         onChangeText={setUsername}
+         />
       </View>
 
       <View style={styles.userInput_Container}>
@@ -38,8 +61,25 @@ const newProfile = () => {
         <TextInput
          style={styles.userInputBox}
          placeholder='Enter you password'/>
-        </View> 
+      </View> 
+
+      <View style={styles.createButtonContainer}>
+        <Link replace href='login' asChild count={isPressed}>
+          <TouchableOpacity onPress={saveProfileHandler} >
+            <Text style={styles.createButton}>Create</Text>
+          </TouchableOpacity>
+        </Link>
+        
+      </View>
+
+      <AvatarOvalay isVisible={visible} notVisible={() => setVisible(false)}>
+        <AvatarList onSelect={setPickerAvatar}/>
+      </AvatarOvalay>
+
+     
     </View>
+
+    
   )
 }
 
@@ -77,8 +117,13 @@ const styles = StyleSheet.create({
         
     },
 
+    pencil: {
+      width: 24,
+      height: 24
+    },
+
     unknown_profile: {
-        width: '90%',
+        width: '80%',
         height: '80%'
     },
 
@@ -90,8 +135,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20 ,
         position: 'absolute',
-        bottom: -10,
-        right: -10
+        bottom: -15,
+        right: -15
     }, 
 
     userInput_Container: {
@@ -119,5 +164,19 @@ const styles = StyleSheet.create({
       
     },
 
- 
+    createButton: {
+      fontFamily: 'HammerSmith',
+      fontSize: 17,
+      lineHeight: 40,
+      color: colors.lighttext
+    },
+
+    createButtonContainer: {
+      backgroundColor: colors.primary,
+      width: 100,
+      alignItems: 'center',
+      borderRadius: 15,
+      marginRight: 235,
+      marginTop: 20
+    }
 })

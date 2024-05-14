@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native'
 import { Link } from 'expo-router'
 
 const index = () => {
-  const ghEmoji = require('../assets/images/flagImoji.png')
+  const ghEmoji = require('../assets/images/emojione-v1_flag-for-ghana.png')
   const akwaabaImage = require('../assets/images/AkwaabaImage.png')
   return (
     <View style={styles.welcomeContainer}>
@@ -13,7 +13,7 @@ const index = () => {
       <View style={styles.welcome}>
         <Text style={styles.welcomeHeading}>Akwaaba!</Text>
         <Text style={styles.welcomeInfo}>Test your knowledge on all things Ghana! 
-        <Image source={ghEmoji} /></Text>
+        <Image source={ghEmoji} style={styles.ghanaflag}/></Text>
       </View>
 
       <View style={styles.welcomeFooterContainer}>
@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
   welcome: {
     paddingHorizontal: 20,
 
+  },
+
+  ghanaflag: {
+    width: 24,
+    height: 24
   },
 
   welcomeHeading: {
