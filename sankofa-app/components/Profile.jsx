@@ -4,19 +4,19 @@ import colors from '../assets/colors/colors'
 import { Link } from 'expo-router'
 
 const Profile = () => {
-  const avatar1 = require('../assets/images/avatar1.jpeg')
+  const avatar5 = require('../assets/images/avatar5.png')
   return (
     <View style={styles.profileContainer}>
       
         <View style={styles.profileImg_Container}>
           <Link href='/(tabs)' asChild>
           <TouchableOpacity>
-            <Image source={avatar1} resizeMode='contain' style={styles.image}/>
+            <Image source={avatar5} resizeMode='contain' style={styles.image}/>
           </TouchableOpacity>
           </Link>
         </View>
      
-      <Text style={styles.profileText}>Chris</Text>
+      <Text style={styles.profileText}>Georgiette</Text>
     </View>
   )
 }
@@ -25,7 +25,7 @@ export default Profile
 
 const styles = StyleSheet.create({
     profileContainer: {
-        width: 102,
+        width: 200,
         height: 135,
         justifyContent: 'space-between',
         alignItems: 'center'  

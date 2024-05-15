@@ -32,11 +32,14 @@ const RootLayout = () => {
      screenOptions={{
         headerTitle: '',
         headerShadowVisible: false,
+        headerShown: false,
         headerStyle: {
-            backgroundColor: colors.background
+            backgroundColor: '#FFEF99', 
+
         },
         statusBarColor: colors.primary,
-        headerBackVisible: false
+        headerBackVisible: false,
+        
     
     }}  ></Stack>
   )

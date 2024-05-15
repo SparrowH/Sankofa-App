@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'space-between',
-    paddingBottom: 60
+    paddingBottom: 60,
+    paddingTop: 60
   },
 
   welcome: {

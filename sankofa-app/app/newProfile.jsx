@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: colors.background,
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: 60
     },
 
     newProfileHeading: {
