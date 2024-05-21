@@ -38,10 +38,9 @@ const RootLayout = () => {
 
         },
         statusBarColor: colors.primary,
-        headerBackVisible: false,
-        
+        headerBackVisible: false,      
     
-    }}  ></Stack>
+    }}  />
   )
 }
 

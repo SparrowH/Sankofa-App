@@ -21,14 +21,8 @@ export default function TabLayout() {
     },
 
     headerTitle:'',
-    headerStyle: {
-        backgroundColor: '#FFEF99',
-        height: 100
-    },
-    headerLeftContainerStyle: {
-      marginTop: 33,
-      height: 55
-    },
+    
+    
     headerRightContainerStyle: {
       marginTop: 20
     },

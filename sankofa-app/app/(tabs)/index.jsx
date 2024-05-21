@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Image, TextInput, TouchableOpacity, Pressable} from 'react-native'
 import React from 'react'
 import Stack from 'expo-router/stack'
 import HeaderLeft from '../../components/HeaderLeft'
@@ -25,6 +25,14 @@ const home = () => {
        contentStyle: {
         alignItems: 'center'
        },
+       headerStyle: {
+        backgroundColor: '#FFEF99',
+        height: 100
+    },
+    headerLeftContainerStyle: {
+      marginTop: 33,
+      height: 55
+    },
        
        
      }} />
@@ -54,7 +62,9 @@ const home = () => {
       
       <View style={styles.textheadingContainer}>
         <Text style={styles.textHeading}>Popular Categories</Text>
-        <Text style={styles.moreInfo}>See all<Image source={cheveron} /></Text>
+        <Link href='discover' asChild>
+          <Pressable><Text style={styles.moreInfo}>See all<Image source={cheveron} /></Text></Pressable>
+        </Link>
       </View>
       <View style={styles.categoryContainer}>
         <Image source={category1} style={styles.categoryImg} resizeMode='contain'/>
