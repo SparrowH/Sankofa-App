@@ -40,7 +40,7 @@ const RootLayout = () => {
         statusBarColor: colors.primary,
         headerBackVisible: false,      
     
-    }}  />
+    }}/>
   )
 }
 

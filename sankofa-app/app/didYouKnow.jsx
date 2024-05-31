@@ -29,7 +29,7 @@ const didYouKnow = () => {
         <View style={styles.bodyContainer}>
             <Image source={history} style={{width: 328, height: 208, borderRadius: 12, marginBottom: 20}}/>
             <Text 
-            style={{fontFamily: 'HammerSmith', fontSize: 24, color: colors.primary, marginBottom: 10}}>Gold Coast</Text>
+            style={{fontFamily: 'HammerSmith', fontSize: 24, color: '#602400', marginBottom: 10}}>Gold Coast</Text>
             <Text style={{fontFamily: 'Poppins', fontSize: 15, color: colors.primary, lineHeight: 24, letterSpacing: 0.4}}>
             In 1482, Ghana was known as the Gold Coast. This name was given to the region by European explorers due to the abundance of gold that could be found there.
             {"\n"}
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     },
 
     moreInfo: {
-        marginTop: 40,
-        backgroundColor: colors.primary,
+        marginTop: 30,
+        backgroundColor: '#602400',
         width: 166,
         height: 44,
         borderRadius: 8,

@@ -27,7 +27,7 @@ const index = () => {
       
         <View style={styles.buttonContainer}>
           <Link href='/login' asChild>
-            <Pressable><Text style={styles.buttonText}>Get started</Text></Pressable>
+            <Pressable style={styles.pressable}><Text style={styles.buttonText}>Get started</Text></Pressable>
           </Link>
         </View>
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   akwaabaImageContainer: {
     marginBottom: 0,
     position: 'relative',
-    top: 270,
+    top: 340,
     left: -25
     
   },
@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
   },
 
   footerInfo: {
-    marginBottom: 20,
+    marginBottom: 10,
     fontFamily: 'Poppins',
     lineHeight: 24,
     fontSize: 16,
     marginHorizontal: 20,
     color: colors.primary,
     position: 'relative',
-    top: 220,
+    top: 280,
     justifyContent: 'center',
     left: -25
 
@@ -117,6 +117,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 22
     
+  },
+
+  pressable: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   buttonText: {
