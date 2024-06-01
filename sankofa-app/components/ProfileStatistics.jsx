@@ -14,13 +14,6 @@ const ProfileStatistics = () => {
 
   return (
     <ScrollView style={styles.profile_Statistics_Container}>
-        <View style={styles.profileStats_Streak}>
-            <Image source={flame} style={{ width: 32, height: 42, marginRight: 18 }} resizeMode='contain' />
-            <View style={styles.profileStat_StreakInfo}>
-                <Text style={styles.profileStat_StreakText}>19 Days</Text>
-                <Text style={styles.profileStat_StreakText1}>Streak</Text>
-            </View>
-        </View>
 
         <View style={styles.profileStats_Details}>
             <DropdownMenu/>
@@ -49,6 +42,14 @@ const ProfileStatistics = () => {
 
                     >Fastest Record</Text>
                 </View>
+            </View>
+        </View>
+
+        <View style={styles.profileStats_Streak}>
+            <Image source={flame} style={{ width: 32, height: 42, marginRight: 18 }} resizeMode='contain' />
+            <View style={styles.profileStat_StreakInfo}>
+                <Text style={styles.profileStat_StreakText}>19 Days</Text>
+                <Text style={styles.profileStat_StreakText1}>Streak</Text>
             </View>
         </View>
 
@@ -91,7 +92,6 @@ const styles = StyleSheet.create({
         marginRight: 10,
         paddingLeft: 12,
         paddingRight: 10,
-        paddingTop: 20,
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
         paddingBottom: 30
@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 16,
         borderWidth: 1,
-        borderColor: '#A8B9CA'
+        borderColor: '#A8B9CA',
+        marginTop: 15
     },
 
     profileStat_StreakInfo: {
