@@ -21,7 +21,7 @@ const index = () => {
           <Image source={akwaabaImage} resizeMode='contain' style={styles.akwaabaImg}/>
         </View>
 
-        <Text style={styles.footerInfo} >Dive in and quiz your way through time! ✨</Text>
+        <View style={{width: 250}}><Text style={styles.footerInfo} >Dive in and quiz your way through time! ✨</Text></View>
 
       </View>
       
@@ -33,7 +33,7 @@ const index = () => {
 
         <View style={styles.logInContainer}>
             <Text style={styles.logInText1}>Already have an account?</Text>
-            <Link href='/login'>
+            <Link href='signIn'>
             <Text style={styles.logInText2}>Log in</Text>
             </Link>
         </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   akwaabaImageContainer: {
     marginBottom: 0,
     position: 'relative',
-    top: 340,
+    top: 260,
     left: -25
     
   },
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   },
 
   footerInfo: {
+
     marginBottom: 10,
     fontFamily: 'Poppins',
     lineHeight: 24,
@@ -110,9 +111,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     color: colors.primary,
     position: 'relative',
-    top: 270,
+    top: 210,
     justifyContent: 'center',
-    left: -25
+    left: -25,
+    textAlign: 'center'
+    
 
     
   }, 
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 22,
-    top: 200
+    top: 180
 
     
     
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
 
   logInContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
 
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
 
   logInText2: {
     fontFamily: 'Poppins',
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 24,
     color: colors.primary,
     textDecorationLine: 'underline'
