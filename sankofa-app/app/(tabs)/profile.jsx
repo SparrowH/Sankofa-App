@@ -5,6 +5,7 @@ import colors from '../../assets/colors/colors'
 import ProfileHeaderRight from '../../components/ProfileHeaderRight'
 import { useState } from 'react'
 import ProfileStatistics from '../../components/ProfileStatistics'
+import ProfileOverView from '../../components/ProfileOverView'
 
 const profile = () => {
   const image = require('../../assets/images/avatar5.png')
@@ -91,7 +92,7 @@ const profile = () => {
           </Pressable>
         </View>
 
-        {isStatsPressed ? <ProfileStatistics/> : <View/>}
+        {isStatsPressed ? <ProfileStatistics/> : <ProfileOverView/>}
         
 
 

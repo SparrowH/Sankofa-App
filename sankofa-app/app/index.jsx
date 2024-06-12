@@ -31,6 +31,15 @@ const index = () => {
           </Link>
         </View>
 
+        <View style={styles.logInContainer}>
+            <Text style={styles.logInText1}>Already have an account?</Text>
+            <Link href='/login'>
+            <Text style={styles.logInText2}>Log in</Text>
+            </Link>
+        </View>
+
+       
+
     </View>
   )
 }
@@ -101,7 +110,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     color: colors.primary,
     position: 'relative',
-    top: 280,
+    top: 270,
     justifyContent: 'center',
     left: -25
 
@@ -109,13 +118,17 @@ const styles = StyleSheet.create({
   }, 
 
   buttonContainer: {
+    position: 'relative',
     width: 315,
     height: 52,
     backgroundColor: colors.primary,
     borderRadius: 26,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 22
+    marginHorizontal: 22,
+    top: 200
+
+    
     
   },
 
@@ -128,7 +141,29 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: colors.lighttext
-  }
+  },
+
+  logInContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  logInText1: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    color: colors.primary,
+    marginRight: 5
+  },
+
+  logInText2: {
+    fontFamily: 'Poppins',
+    fontSize: 18,
+    lineHeight: 24,
+    color: colors.primary,
+    textDecorationLine: 'underline'
+    
+   }
 
 
 })
