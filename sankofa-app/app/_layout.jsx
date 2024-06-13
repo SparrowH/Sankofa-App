@@ -12,7 +12,9 @@ const RootLayout = () => {
     const [fontsLoaded, fontError] = useFonts({
         'Poppins': require('../assets/fonts/Poppins-Regular.ttf'),
         'PoppinsBold': require('../assets/fonts/Poppins-Bold.ttf'),
-        'HammerSmith': require('../assets/fonts/HammersmithOne-Regular.ttf')
+        'HammerSmith': require('../assets/fonts/HammersmithOne-Regular.ttf'),
+        'PoppinsMedium': require('../assets/fonts/Poppins-Medium.ttf'),
+        'PoppinsSemiBold': require('../assets/fonts/Poppins-SemiBold.ttf')
 
       });
     

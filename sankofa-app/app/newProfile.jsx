@@ -7,6 +7,9 @@ import AvatarImage from '../components/AvatarImage'
 import {Link} from 'expo-router'
 import login from './login'
 import Profile from '../components/Profile'
+import { color } from '@rneui/base'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const newProfile = () => {
     const unknown = require('../assets/images/unknown.png')
@@ -31,7 +34,7 @@ const newProfile = () => {
   return (
  
     <View style={styles.newProfileContainer} >
-      <Text style={styles.newProfileHeading}>Create a new Profile</Text>
+      <Text style={styles.newProfileHeading}>Create an account</Text>
 
       <View style={styles.profileContainer}>
         <View style={styles.unknown_profile_Container}>
@@ -46,31 +49,68 @@ const newProfile = () => {
         </View>
       </View>
 
-      <View style={styles.userInput_Container}>
-        <Text style={styles.userInput_Text} >Username</Text>
-        <TextInput
-         style={styles.userInputBox}
-         placeholder={` Enter preferred username`}
-         value={username}
-         onChangeText={setUsername}
-         />
+      <View style={{marginTop: 10}}>
+            <Text 
+            style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
+            >Username</Text>
+            <View 
+            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 14, flexDirection: 'row', marginBottom: 15, elevation: 10, borderWidth: 1, borderColor: 'gray'}}>
+                <MaterialCommunityIcons name="account-circle-outline" size={27} color='grey' />
+                <TextInput
+                style={{marginLeft: 15, fontSize: 16, justifyContent: 'flex-end'}}
+                placeholder='Enter preffered username'
+                placeholderTextColor='gray'
+                />
+          </View>
+
+          <Text
+            style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
+            >Email</Text>
+            <View 
+            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 14, flexDirection: 'row', elevation: 10, marginBottom: 15, borderWidth: 1, borderColor: 'gray'}}
+            >
+                <MaterialIcons name="mail-outline" size={27} color="gray" />                
+                <TextInput
+                style={{marginLeft: 15, fontSize: 16, fontFamily: 'Poppins', width: 250, justifyContent: 'flex-end' }}
+                placeholder='example@email.com'
+                placeholderTextColor='grey'
+                />
+            </View>
+
+
+            <Text
+            style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
+            >Password</Text>
+            <View 
+            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 14, flexDirection: 'row', elevation: 10, marginBottom: 15, borderWidth: 1, borderColor: 'gray'}}
+            >
+                <MaterialIcons name="lock-outline" size={27} color="grey" />
+                <TextInput
+                style={{marginLeft: 15, fontSize: 16, fontFamily: 'Poppins', width: 250, }}
+                placeholder='at least 8 characters'
+                placeholderTextColor='grey'
+                />
+            </View>
+        
       </View>
 
-      <View style={styles.userInput_Container}>
-        <Text style={styles.userInput_Text}>Password</Text>
-        <TextInput
-         style={styles.userInputBox}
-         placeholder='Enter you password'/>
-      </View> 
+     
 
       <View style={styles.createButtonContainer}>
         <Link replace href='login' asChild count={isPressed}>
           <TouchableOpacity onPress={saveProfileHandler} >
-            <Text style={styles.createButton}>Create</Text>
+            <Text style={styles.createButton}>Create Account</Text>
           </TouchableOpacity>
         </Link>
         
       </View>
+
+      <View style={{marginTop: 10, flexDirection: 'row'}}>
+          <Text style={{fontFamily: 'Poppins', fontSize: 16, lineHeight: 24, color: colors.primary}}>Already have an account?</Text>
+          <Link href='signIn'>
+          <Text style={{fontFamily: 'PoppinsSemiBold', textDecorationLine: 'underline', fontSize: 16, lineHeight: 24, color: colors.primary}}>Log in</Text>
+          </Link>
+            </View>
 
       <AvatarOvalay isVisible={visible} notVisible={() => setVisible(false)}>
         <AvatarList onSelect={setPickerAvatar}/>
@@ -89,7 +129,7 @@ const styles = StyleSheet.create({
     newProfileContainer: {
         width: '100%',
         height: '100%',
-        backgroundColor: colors.background,
+        backgroundColor: '#FFFBE5',
         alignItems: 'center',
         paddingTop: 60
     },
@@ -102,7 +142,7 @@ const styles = StyleSheet.create({
     },
 
     profileContainer: {
-        marginBottom: 100
+        marginBottom: 25
     },
 
     unknown_profile_Container: {
@@ -149,9 +189,10 @@ const styles = StyleSheet.create({
     },
 
     userInput_Text: {
-      fontFamily: 'Poppins',
+      fontFamily: 'PoppinsSemiBold',
       fontSize: 16,
-      lineHeight: 24
+      lineHeight: 24,
+      color: colors.primary
     },
 
     userInputBox: {
@@ -166,18 +207,20 @@ const styles = StyleSheet.create({
     },
 
     createButton: {
-      fontFamily: 'HammerSmith',
-      fontSize: 17,
-      lineHeight: 40,
+      fontFamily: 'Poppins',
+      fontSize: 18,
+      lineHeight: 27,
       color: colors.lighttext
     },
 
     createButtonContainer: {
       backgroundColor: colors.primary,
-      width: 100,
+      width: 300,
+      height: 51,
       alignItems: 'center',
-      borderRadius: 15,
-      marginRight: 235,
-      marginTop: 20
+      borderRadius: 26,
+      marginTop: 10,
+      justifyContent: 'center'
+
     }
 })

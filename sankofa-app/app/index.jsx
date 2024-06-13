@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   },
 
   logInText2: {
-    fontFamily: 'Poppins',
+    fontFamily: 'PoppinsMedium',
     fontSize: 16,
     lineHeight: 24,
     color: colors.primary,
