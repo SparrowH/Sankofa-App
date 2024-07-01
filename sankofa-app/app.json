@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/LogoIcon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sparrowh.sankofaapp"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d0dc5504-c011-43e9-96a3-e69ab00f1cff"
+      }
     }
   }
 }

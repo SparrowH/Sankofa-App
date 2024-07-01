@@ -1,12 +1,36 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import React from 'react'
 import colors from '../assets/colors/colors'
-import { StatusBar } from 'react-native'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
+import app from '../firebaseConfig'
+import { getAuth, signInAnonymously, updateProfile } from 'firebase/auth';
+
 
 const index = () => {
   const ghEmoji = require('../assets/images/emojione-v1_flag-for-ghana.png')
   const akwaabaImage = require('../assets/images/AkwaabaImage.png')
+  const unknown = require('../assets/images/unknown.png')
+
+  async function handleAnonymousLogin() {
+    const auth = getAuth(app);
+  
+    try {
+      const userCredential = await signInAnonymously(auth);
+      const user = userCredential.user;
+  
+      await updateProfile(user, {
+        displayName: 'User1234',
+        photoURL: unknown,
+      });
+  
+      // Handle successful login and navigate to the protected area
+      router.navigate('(tabs)');
+    } catch (error) {
+      console.error('Error signing in anonymously:', error);
+      // Handle errors (e.g., display an error message to the user)
+    }
+  }
+
   return (
     <View style={styles.welcomeContainer}>
 
@@ -26,9 +50,9 @@ const index = () => {
       </View>
       
         <View style={styles.buttonContainer}>
-          <Link href='/login' asChild>
-            <Pressable style={styles.pressable}><Text style={styles.buttonText}>Get started</Text></Pressable>
-          </Link>
+            <Pressable style={styles.pressable} onPress={handleAnonymousLogin}>
+              <Text style={styles.buttonText}>Get started</Text>
+            </Pressable>
         </View>
 
         <View style={styles.logInContainer}>
@@ -93,8 +117,7 @@ const styles = StyleSheet.create({
   },
 
   akwaabaImg: {
-    /* silhouette-skyline-panorama-of-city-accraghana-vector-43735377-removebg-preview 1 */
-
+   /* silhouette-skyline-panorama-of-city-accraghana-vector-43735377-removebg-preview 1 */
   width: 408,
   height: 275,
 
@@ -103,7 +126,6 @@ const styles = StyleSheet.create({
   },
 
   footerInfo: {
-
     marginBottom: 10,
     fontFamily: 'Poppins',
     lineHeight: 24,
@@ -114,10 +136,7 @@ const styles = StyleSheet.create({
     top: 210,
     justifyContent: 'center',
     left: -25,
-    textAlign: 'center'
-    
-
-    
+    textAlign: 'center'  
   }, 
 
   buttonContainer: {
