@@ -1,15 +1,16 @@
-import { View, Text, StyleSheet, Pressable, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Pressable, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import colors from '../assets/colors/colors'
 import AvatarOvalay from '../components/AvatarOverlay'
 import AvatarList from '../components/AvatarList'
 import AvatarImage from '../components/AvatarImage'
-import {Link} from 'expo-router'
-import login from './login'
-import Profile from '../components/Profile'
-import { color } from '@rneui/base'
+import {Link, router} from 'expo-router'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import app from '../firebaseConfig'
+import { getAuth, createUserWithEmailAndPassword, updateProfile, updateCurrentUser } from "firebase/auth";
+
+
 
 const newProfile = () => {
     const unknown = require('../assets/images/unknown.png')
@@ -17,23 +18,42 @@ const newProfile = () => {
     const [visible, setVisible] = useState(false)
     const [pickerAvatar, setPickerAvatar] = useState(null)
     const [username, setUsername] = useState('')
-    const [isPressed, setIsPressed] = useState(false)
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
 
+    const auth = getAuth(app)
+    const user = auth.currentUser
 
     const toggleOverlay = () => {
       setVisible(!visible);
     };
 
     const  saveProfileHandler = () => {
-      setIsPressed(!isPressed)
-      return(
-        <Profile selectedAvatar={pickerAvatar} username={username}/>
-      )
-    }
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // User successfully created
+      const user = userCredential.user;
+      return updateProfile(user, { displayName: username }); // Update profile here
+    })
+    .then(() => {
+      // Profile updated successfully
+      const updatedUser = auth.currentUser;
+      console.log('Profile updated!', updatedUser.displayName);
+      router.replace('(tabs)');
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(`Error (${errorCode}): ${errorMessage}`);
+      // Handle errors here, e.g., show a message to the user
+    });
+}
+  
 
+    
   return (
  
-    <View style={styles.newProfileContainer} >
+    <ScrollView style={styles.newProfileContainer} contentContainerStyle={{flexGrow: 1 , alignItems:'center'}}>
       <Text style={styles.newProfileHeading}>Create an account</Text>
 
       <View style={styles.profileContainer}>
@@ -54,12 +74,14 @@ const newProfile = () => {
             style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
             >Username</Text>
             <View 
-            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 14, flexDirection: 'row', marginBottom: 15, elevation: 10, borderWidth: 1, borderColor: 'gray'}}>
+            style={{width: 330, height: 58, backgroundColor: colors.lighttext, borderRadius: 16, padding: 14, flexDirection: 'row', marginBottom: 15, elevation: 10, borderWidth: 1, borderColor: 'gray'}}>
                 <MaterialCommunityIcons name="account-circle-outline" size={27} color='grey' />
                 <TextInput
                 style={{marginLeft: 15, fontSize: 16, justifyContent: 'flex-end'}}
                 placeholder='Enter preffered username'
                 placeholderTextColor='gray'
+                value={username}
+                onChangeText={(text) => setUsername(text)}
                 />
           </View>
 
@@ -74,6 +96,8 @@ const newProfile = () => {
                 style={{marginLeft: 15, fontSize: 16, fontFamily: 'Poppins', width: 250, justifyContent: 'flex-end' }}
                 placeholder='example@email.com'
                 placeholderTextColor='grey'
+                value={email}
+                onChangeText={(text) => setEmail(text)}
                 />
             </View>
 
@@ -89,6 +113,9 @@ const newProfile = () => {
                 style={{marginLeft: 15, fontSize: 16, fontFamily: 'Poppins', width: 250, }}
                 placeholder='at least 8 characters'
                 placeholderTextColor='grey'
+                value={password}
+                onChangeText={text => setPassword(text)}
+                secureTextEntry
                 />
             </View>
         
@@ -97,11 +124,9 @@ const newProfile = () => {
      
 
       <View style={styles.createButtonContainer}>
-        <Link replace href='login' asChild count={isPressed}>
           <TouchableOpacity onPress={saveProfileHandler} >
             <Text style={styles.createButton}>Create Account</Text>
           </TouchableOpacity>
-        </Link>
         
       </View>
 
@@ -117,7 +142,7 @@ const newProfile = () => {
       </AvatarOvalay>
 
      
-    </View>
+    </ScrollView>
 
     
   )
@@ -129,9 +154,8 @@ const styles = StyleSheet.create({
     newProfileContainer: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#FFFBE5',
-        alignItems: 'center',
-        paddingTop: 60
+        backgroundColor: colors.background,
+        paddingTop: 40
     },
 
     newProfileHeading: {
@@ -142,11 +166,11 @@ const styles = StyleSheet.create({
     },
 
     profileContainer: {
-        marginBottom: 25
+        marginBottom: 20
     },
 
     unknown_profile_Container: {
-        marginTop: 60,
+        marginTop: 40,
         backgroundColor: '#CFCFCE',
         width: 85,
         height: 85,

@@ -1,6 +1,7 @@
 import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
+import { router } from 'expo-router'
 
 const CategoryList = () => {
     const [category] = useState([
@@ -16,6 +17,10 @@ const CategoryList = () => {
     ]
         
     )
+
+    const HandleOnPress = () => {
+      router.navigate('/questions/question')
+    }
   return (
     <FlatList
       horizontal={false}
@@ -24,7 +29,7 @@ const CategoryList = () => {
       showsVerticalScrollIndicator={false}
       renderItem={({item, key}) => (
         <View style={styles.imageContainer}>
-          <TouchableOpacity onPress={() => {onSelect(item)}}
+          <TouchableOpacity onPress={HandleOnPress}
            >
             <Image source={item} key={key} style={styles.image} resizeMode='contain'/>
           </TouchableOpacity>

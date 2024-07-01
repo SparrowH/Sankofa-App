@@ -67,8 +67,15 @@ const home = () => {
         </Link>
       </View>
       <View style={styles.categoryContainer}>
-        <Image source={category1} style={styles.categoryImg} resizeMode='contain'/>
-        <Image source={category2} style={styles.categoryImg}  resizeMode='contain'/>
+        <Link href='/questions/question' asChild>
+        <TouchableOpacity>
+          <Image source={category1} style={styles.categoryImg} resizeMode='contain'/>
+        </TouchableOpacity>
+        </Link>
+        
+        <TouchableOpacity>
+          <Image source={category2} style={styles.categoryImg}  resizeMode='contain'/>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.textheadingContainer}>
