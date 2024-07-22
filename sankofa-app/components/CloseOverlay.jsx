@@ -1,9 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { Overlay } from '@rneui/themed';
+import { router } from 'expo-router';
 
 
 const CloseOverlay = ({isVisible, isNotVisible}) => {
+    const QuitQuizHandler = () => {
+        router.replace('discover')
+    }
   return (
     <View>
         <Overlay 
@@ -27,7 +31,7 @@ const CloseOverlay = ({isVisible, isNotVisible}) => {
             </View>
 
             <View style={{width: 150, height: 45,borderRadius: 24, borderWidth: 2, borderColor: '#DD214F'}} >
-                <TouchableOpacity
+                <TouchableOpacity onPress={QuitQuizHandler}
                 style={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}
                 >
                     <Text

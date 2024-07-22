@@ -8,7 +8,7 @@ import { Link } from 'expo-router';
 const ProfileHeaderRight = () => {
   return (
     <View style={styles.profileContainer}>
-      <Link href='/settings' asChild >
+      <Link href='/Settings' asChild >
         <TouchableOpacity>
             <MaterialCommunityIcons name="cog-outline" size={33} color={colors.primary} />
         </TouchableOpacity>
