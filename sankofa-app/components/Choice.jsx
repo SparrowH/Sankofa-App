@@ -1,17 +1,30 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
 
-const Choice = ({choice}) => {
-  return (
-    <View style={styles.choiceContainer}>
-      <TouchableOpacity style={styles.button}>
-        <Text style={{fontFamily: 'Poppins', fontSize: 18, lineHeight: 27, color: '#665600'}}>{choice}</Text>
-      </TouchableOpacity>
-    </View>
-  )
-}
+const Choice = ({ choice, onPress, selectedOption, isCorrect, correctAnswer }) => {
+    let backgroundColor = '#FFEF99';
 
-export default Choice
+    if (selectedOption) {
+        if (selectedOption === choice) {
+            backgroundColor = isCorrect ? '#6ACE13' : '#998100';
+        }
+        if (isCorrect === false && choice === correctAnswer) {
+            backgroundColor = '#6ACE13';
+        } else if (isCorrect === false && selectedOption === choice) {
+            backgroundColor = '#EB5757';
+        }
+    }
+
+    return (
+        <View style={[styles.choiceContainer, { backgroundColor }]}>
+            <TouchableOpacity style={styles.button} onPress={onPress} disabled={selectedOption !== null}>
+                <Text style={{ fontFamily: 'Poppins', fontSize: 18, lineHeight: 27, color: '#665600' }}>{choice}</Text>
+            </TouchableOpacity>
+        </View>
+    );
+};
+
+export default Choice;
 
 const styles = StyleSheet.create({
     choiceContainer: {
@@ -24,8 +37,8 @@ const styles = StyleSheet.create({
     },
 
     button: {
-      width: '100%',
-      height: '100%',
-      justifyContent: 'center'
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center'
     }
-})
+});

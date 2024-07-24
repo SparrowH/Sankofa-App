@@ -8,6 +8,7 @@ import CloseOverlay from '../../components/CloseOverlay';
 import { MaterialIcons } from '@expo/vector-icons';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -17,12 +18,14 @@ const shuffleArray = (array) => {
     return array;
 };
 
-
 const Question = () => {
     const { category } = useLocalSearchParams();
     const [visible, setVisible] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [isCorrect, setIsCorrect] = useState(null);
+    const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -31,6 +34,7 @@ const Question = () => {
                 const questionsData = querySnapshot.docs.map(doc => doc.data());
                 const shuffledQuestions = shuffleArray(questionsData).slice(0, 10);
                 setQuestions(shuffledQuestions);
+                await clearProgress(); // Clear previous progress to start fresh
             } catch (error) {
                 console.error('Error fetching questions: ', error);
             }
@@ -43,11 +47,69 @@ const Question = () => {
         setVisible(!visible);
     };
 
-    const handleNextQuestion = () => {
+    const handleOptionSelect = (option) => {
+        setSelectedOption(option);
+        setTimeout(() => {
+            const currentQuestion = questions[currentQuestionIndex];
+            if (option === currentQuestion.answer) {
+                setIsCorrect(true);
+                setCorrectAnswersCount(correctAnswersCount + 1);
+            } else {
+                setIsCorrect(false);
+            }
+            setTimeout(handleNextQuestion, 2000);
+        }, 2000);
+    };
+
+    const handleNextQuestion = async () => {
         if (currentQuestionIndex < 9) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            const nextIndex = currentQuestionIndex + 1;
+            setCurrentQuestionIndex(nextIndex);
+            setSelectedOption(null);
+            setIsCorrect(null);
+            await saveProgress(nextIndex);
         } else {
-            router.push('/questions/finish'); // Navigate to finish screen
+            await clearProgress();
+            router.push({
+                pathname: '/questions/finish',
+                params: { score: correctAnswersCount }
+            });
+        }
+    };
+
+    const saveProgress = async (index) => {
+        try {
+            await AsyncStorage.setItem('@progress', JSON.stringify({
+                category,
+                currentQuestionIndex: index,
+                questions,
+                correctAnswersCount
+            }));
+        } catch (error) {
+            console.error('Error saving progress: ', error);
+        }
+    };
+
+    const loadProgress = async () => {
+        try {
+            const savedProgress = await AsyncStorage.getItem('@progress');
+            if (savedProgress !== null) {
+                const { currentQuestionIndex, questions: savedQuestions, correctAnswersCount } = JSON.parse(savedProgress);
+                if (savedQuestions.length === questions.length) {
+                    setCurrentQuestionIndex(currentQuestionIndex);
+                    setCorrectAnswersCount(correctAnswersCount);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading progress: ', error);
+        }
+    };
+
+    const clearProgress = async () => {
+        try {
+            await AsyncStorage.removeItem('@progress');
+        } catch (error) {
+            console.error('Error clearing progress: ', error);
         }
     };
 
@@ -98,7 +160,14 @@ const Question = () => {
             </View>
             <View style={styles.questionChoicesContainer}>
                 {currentQuestion.options.map((option, index) => (
-                    <Choice key={index} choice={option} />
+                    <Choice 
+                        key={index} 
+                        choice={option} 
+                        onPress={() => handleOptionSelect(option)} 
+                        selectedOption={selectedOption} 
+                        isCorrect={isCorrect} 
+                        correctAnswer={currentQuestion.answer}
+                    />
                 ))}
             </View>
             <View style={styles.nextButtonContainer}>

@@ -89,7 +89,7 @@ const newProfile = () => {
             style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
             >Email</Text>
             <View 
-            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 14, flexDirection: 'row', elevation: 10, marginBottom: 15, borderWidth: 1, borderColor: 'gray'}}
+            style={{width: 330, height: 58, backgroundColor: colors.lighttext, borderRadius: 16, padding: 14, flexDirection: 'row', elevation: 10, marginBottom: 15, borderWidth: 1, borderColor: 'gray'}}
             >
                 <MaterialIcons name="mail-outline" size={27} color="gray" />                
                 <TextInput
@@ -106,7 +106,7 @@ const newProfile = () => {
             style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
             >Password</Text>
             <View 
-            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 14, flexDirection: 'row', elevation: 10, marginBottom: 15, borderWidth: 1, borderColor: 'gray'}}
+            style={{width: 330, height: 58, backgroundColor: colors.lighttext, borderRadius: 16, padding: 14, flexDirection: 'row', elevation: 10, marginBottom: 15, borderWidth: 1, borderColor: 'gray'}}
             >
                 <MaterialIcons name="lock-outline" size={27} color="grey" />
                 <TextInput
@@ -135,7 +135,7 @@ const newProfile = () => {
           <Link href='signIn'>
           <Text style={{fontFamily: 'PoppinsSemiBold', textDecorationLine: 'underline', fontSize: 16, lineHeight: 24, color: colors.primary}}>Log in</Text>
           </Link>
-            </View>
+      </View>
 
       <AvatarOvalay isVisible={visible} notVisible={() => setVisible(false)}>
         <AvatarList onSelect={setPickerAvatar}/>
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
       height: 51,
       alignItems: 'center',
       borderRadius: 26,
-      marginTop: 10,
+      marginTop: 40,
       justifyContent: 'center'
 
     }

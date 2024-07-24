@@ -43,7 +43,7 @@ const signIn = () => {
             style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
             >Email</Text>
             <View 
-            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 16, flexDirection: 'row', marginBottom: 25, elevation: 10, borderWidth: 1, borderColor: colors.primary}}>
+            style={{width: 330, height: 58, backgroundColor: colors.lighttext, borderRadius: 16, padding: 16, flexDirection: 'row', marginBottom: 25, elevation: 10, borderWidth: 1, borderColor: colors.primary}}>
                 <MaterialCommunityIcons name="account-circle-outline" size={27} color='grey' />
                 <TextInput
                 style={{marginLeft: 15, fontSize: 16, justifyContent: 'flex-end'}}
@@ -58,7 +58,7 @@ const signIn = () => {
             style={{fontFamily: 'PoppinsSemiBold', fontSize: 16, lineHeight: 24, color: colors.primary, marginBottom: 10}}
             >Password</Text>
             <View 
-            style={{width: 330, height: 58, backgroundColor: '#FFF7CC', borderRadius: 16, padding: 16, flexDirection: 'row', elevation: 10, marginBottom: 30, borderWidth: 1, borderColor: 'gray'}}
+            style={{width: 330, height: 58, backgroundColor: colors.lighttext, borderRadius: 16, padding: 16, flexDirection: 'row', elevation: 10, marginBottom: 30, borderWidth: 1, borderColor: 'gray'}}
             >
                 <MaterialIcons name="lock-outline" size={24} color="grey" />
                 <TextInput
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     signInContainer: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#FFFBE5',
+        backgroundColor: '#FFF7CC',
     },
 
     signInHeaderContainer: {

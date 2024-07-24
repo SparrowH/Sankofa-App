@@ -23,6 +23,7 @@ const CloseOverlay = ({isVisible, isNotVisible}) => {
             <View 
             style={{width: 150, height: 45, backgroundColor: '#4C4000', borderRadius: 24, marginBottom: 15}} >
                 <TouchableOpacity 
+                onPress={isNotVisible}
                 style={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
                 <Text 
                 style={{fontFamily: 'Poppins', fontSize: 18, lineHeight: 27, color: '#FFF7CC'}}

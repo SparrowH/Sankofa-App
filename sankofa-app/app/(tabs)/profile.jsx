@@ -6,6 +6,10 @@ import ProfileHeaderRight from '../../components/ProfileHeaderRight'
 import { useState } from 'react'
 import ProfileStatistics from '../../components/ProfileStatistics'
 import ProfileOverView from '../../components/ProfileOverView'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from '../../firebaseConfig'
+import { useEffect } from 'react';
+
 
 const profile = () => {
   const image = require('../../assets/images/avatar5.png')
@@ -16,6 +20,23 @@ const profile = () => {
     setIsOverViewPressed(!isOverViewPressed)
     setIsStatsPressed(!isStatsPressed)
   }
+
+const auth = getAuth(app);
+const [displayName, setDisplayName] = useState(null)
+
+useEffect(() => {
+  const unsubscribe = auth.onAuthStateChanged((user) => {
+    if (user) {
+       setDisplayName(user.displayName);
+       console.log(user.displayName)
+      console.log('User logged in:', displayName);
+      // Update UI or handle logic based on displayName
+    }
+  });
+
+  return unsubscribe;
+}, []);
+
 
 
 
@@ -76,7 +97,7 @@ const profile = () => {
       <View style={{backgroundColor: colors.secondary, width: '100%', height: 30, position: 'absolute'}}/>
       <View style={styles.profileContainer}>
         <Image source={image} resizeMode='contain' style={styles.profileImg} />
-        <Text style={styles.profileName}>Georgiette Ansaah</Text>
+        <Text style={styles.profileName}>{displayName}</Text>
         <View style={styles.editProfileButton}>
           <TouchableOpacity>
             <Text style={styles.editProfileText}>Edit Profile</Text>
